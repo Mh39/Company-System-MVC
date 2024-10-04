@@ -78,8 +78,7 @@ namespace CompanyG02.PL.Controllers
             //var Department = departmentRepository.Get(id.Value);
             //if (Department is null)
             //    return NotFound();
-
-            //return View(Department);
+             //return View(Department);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
