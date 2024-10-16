@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using CompanyG02.BLL.Repositories;
-using CompanyG02.DAL.Models;
-using CompanyG02.PL.Helper;
 using CompanyG02.PL.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,20 +15,20 @@ namespace CompanyG02.PL.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IMapper mapper;
 
-        public RoleController(RoleManager<IdentityRole>roleManager,IMapper mapper)
+        public RoleController(RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             this.roleManager = roleManager;
             this.mapper = mapper;
         }
-       
+
         public async Task<IActionResult> Index(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
                 var Roles = await roleManager.Roles.Select(R => new RoleViewModel()
                 {
-                  Id=R.Id,
-                  RoleName = R.Name
+                    Id = R.Id,
+                    RoleName = R.Name
                 }).ToListAsync();
                 return View(Roles);
             }
@@ -42,7 +39,7 @@ namespace CompanyG02.PL.Controllers
                 {
                     Id = role.Id,
                     RoleName = role.Name
-                   
+
                 };
 
                 return View(new List<RoleViewModel>() { MappedUser });
@@ -57,10 +54,10 @@ namespace CompanyG02.PL.Controllers
         public async Task<IActionResult> Create(RoleViewModel RoleVM)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var MappedRole = mapper.Map<RoleViewModel, IdentityRole>(RoleVM);
-              
-               await roleManager.CreateAsync(MappedRole);
+
+                await roleManager.CreateAsync(MappedRole);
                 return RedirectToAction(nameof(Index));
 
             }
@@ -75,7 +72,7 @@ namespace CompanyG02.PL.Controllers
             var role = await roleManager.FindByIdAsync(id);
             if (role is null)
                 return NotFound();
-            var MappedRole= mapper.Map<IdentityRole, RoleViewModel>(role);
+            var MappedRole = mapper.Map<IdentityRole, RoleViewModel>(role);
             return View(ViewName, MappedRole);
         }
         public async Task<IActionResult> Edit(string id)
@@ -96,7 +93,7 @@ namespace CompanyG02.PL.Controllers
                 {
                     var role = await roleManager.FindByIdAsync(id);
                     role.Name = RoleVM.RoleName;
-                   
+
                     await roleManager.UpdateAsync(role);
                     return RedirectToAction(nameof(Index));
 
@@ -104,7 +101,7 @@ namespace CompanyG02.PL.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError(string.Empty, ex.Message);
-                   
+
 
                 }
 

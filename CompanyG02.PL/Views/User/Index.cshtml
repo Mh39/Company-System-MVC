@@ -28,8 +28,8 @@
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(U=>U.Id)</th>
-                <th>@Html.DisplayNameFor(U=>U.FName)</th>
+@*                 <th>@Html.DisplayNameFor(U=>U.Id)</th>
+ *@                <th>@Html.DisplayNameFor(U=>U.FName)</th>
                 <th>@Html.DisplayNameFor(U=>U.LName)</th>
                 <th>@Html.DisplayNameFor(U=>U.Email)</th>
                 <th>@Html.DisplayNameFor(U=>U.PhoneNumber)</th>
@@ -46,8 +46,8 @@
             @foreach (var User in Model)
             {
                 <tr>
-                    <td>@User.Id</td>
-                    <td>@User.FName</td>
+@*                     <td>@User.Id</td>
+ *@                    <td>@User.FName</td>
                     <td>@User.LName</td>
                     <td>@User.Email</td>
                     <td>@User.PhoneNumber</td>

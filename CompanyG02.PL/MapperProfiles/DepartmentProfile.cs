@@ -7,8 +7,8 @@ using CompanyG02.PL.ViewModels;
 
 namespace CompanyG02.PL.MapperProfiles
 {
-    
-    public class DepartmentProfile:Profile
+
+    public class DepartmentProfile : Profile
     {
         public DepartmentProfile()
         {
